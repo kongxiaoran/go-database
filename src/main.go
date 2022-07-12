@@ -1,6 +1,10 @@
 package main
 
+import (
+	mysql "go-database/src/mysql"
+)
+
 func main() {
-	mysqlClient.getMysqlClient()
+	mysql.GetGORMClient()
 
 }

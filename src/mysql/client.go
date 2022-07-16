@@ -1,9 +1,9 @@
 package mysql
 
 import (
-	"encoding/json"
 	"fmt"
-	"os"
+
+	util "go-database/src/util"
 
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
@@ -16,10 +16,28 @@ type Person struct {
 }
 
 type MysqlConfig struct {
+	Work     MysqlWork
 	Ip       string
 	User     string
 	Password string
+	Base     string
 }
+
+type MysqlWork struct {
+	PrepareSQL     string
+	SQL            string
+	PrimaryKey     string
+	StartTimeStamp string
+	EndTimeStamp   string
+	ThreadNumber   int
+	Model          string
+}
+
+var Config *MysqlConfig
+var Work *MysqlWork
+var DB *gorm.DB
+var err error
+var dsn string
 
 func GetMysqlClient() {
 
@@ -38,32 +56,21 @@ func GetMysqlClient() {
 
 }
 
-func GetGORMClient() {
+// 加载配置文件，初始化 mysql客户端
+func init() {
+	Config = util.GetObjectFromJSON("./mysql/init.json", new(MysqlConfig)).(*MysqlConfig)
+	Work = &Config.Work
 
-	// dsn := "root:298444kxrtxy@tcp(150.158.165.30:3306)/go_test?charset=utf8mb4&parseTime=True&loc=Local"
-	// db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
-
-	// if err != nil {
-	// 	fmt.Println("连接数据库失败", err)
-	// }
-
-	// var person Person
-	// db.Raw("select id,name,age from person where id = ?", 1).Scan(&person)
-	// fmt.Println(person)
-	file, _ := os.Open("init.json")
-	defer file.Close()
-	decoder := json.NewDecoder(file)
-	conf := MysqlConfig{}
-	err := decoder.Decode(&conf)
+	dsn = Config.User + ":" + Config.Password + "@tcp(" + Config.Ip + ")/" + Config.Base + "?charset=utf8mb4&parseTime=True&loc=Local"
+	DB, err = gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
-		fmt.Println("Error:", err)
+		fmt.Println("连接数据库失败", err)
 	}
-	fmt.Println(conf.Ip)
 }
 
-/*
-	GORM 官方文档：
-	https://gorm.io/zh_CN/docs/connecting_to_the_database.html
+func GetGORMClient() {
 
-
-*/
+	var person Person
+	DB.Raw("select id,name,age from person where id = ?", 1).Scan(&person)
+	fmt.Println(person)
+}

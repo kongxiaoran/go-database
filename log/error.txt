@@ -1,0 +1,8 @@
+ERROR: 2022/07/13 14:21:06.401588 logUtil.go:45:  -- 配置文件中 work 参数中 缺少 SQL -- 
+ERROR: 2022/07/13 14:21:06.401645 logUtil.go:45:  -- 配置文件中 work 参数中 ThreadNumber数值 不在预定范围内 -- 
+ERROR: 2022/07/13 14:21:40.555542 logUtil.go:45:  -- 配置文件中 work 参数中 缺少 SQL -- 
+ERROR: 2022/07/13 14:21:57.816888 logUtil.go:45:  -- 配置文件中 work 参数中 缺少 SQL -- 
+ERROR: 2022/07/13 14:47:47.852311 logUtil.go:45:  -- 配置文件中 work 参数中 缺少 SQL -- 
+ERROR: 2022/07/13 14:48:54.306441 logUtil.go:45:  -- 配置文件中 work 参数中 缺少 SQL -- 
+ERROR: 2022/07/13 15:55:15.897897 logUtil.go:45:  -- 配置文件中 work 参数中 缺少 SQL -- 
+ERROR: 2022/07/13 15:57:02.898496 logUtil.go:45:  -- 配置文件中 work 参数中 缺少 SQL -- 

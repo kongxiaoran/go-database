@@ -1,0 +1,16 @@
+{
+    "ip": "150.158.165.30:3306",
+    "user": "root",
+    "password": "298444kxrtxy",
+    "base":"go_test",
+    "work":{
+        "prepareSQL": "dd",
+        "sql":"xxxx",
+        "primaryKey":"",
+        "startTimeStamp":"",
+        "endTimeStamp":"",
+        "threadNumber":10,
+        "model":"FULL_GOROUTINE"
+    }
+    
+}

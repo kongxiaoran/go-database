@@ -5,6 +5,6 @@ import (
 )
 
 func main() {
-	mysql.GetGORMClient()
 
+	mysql.Exe()
 }
